@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>FizzBuzz問題</h1>
+    FizzNum：<input type="text" id="fizzNum" placeholder="整数値を入力してください" value="">
+    <br>
+    BuzzNum：<input type="text" id="buzzNum" placeholder="整数値を入力してください" value="">
+    <br>
+    
+    <button type="button" id="output">実行</button>
+
+    <h2>【出力】</h2>
+
+    <ul id="fizzbuzz"></ul>
+
+    <script>
+      const button = document.getElementById('output');
+      const fizzbuzz = document.getElementById('fizzbuzz');
+
+      const list = (content) => {
+        const li = document.createElement('li');
+        li.textContent = content;
+        fizzbuzz.appendChild(li);
+      };
+
+      button.addEventListener('click', () => {
+        fizzbuzz.textContent = '';
+        
+        const fizzNum = Number(document.getElementById('fizzNum').value);
+        const buzzNum = Number(document.getElementById('buzzNum').value);
+        const isFizzinteger = Number.isInteger(fizzNum) && Number.isInteger(buzzNum);
+        if ( fizzNum > 0 && buzzNum > 0  && isFizzinteger  ) {
+          for (let i = 1; i < 100; i++) {
+            if (i % fizzNum === 0 && i % buzzNum === 0) {
+              list('FizzBuzz' + i);
+            } else if (i % fizzNum === 0) {
+              list('Fizz' + i);
+            } else if (i % buzzNum === 0) {
+              list('Buzz' + i);
+            }
+          }
+        } else {
+          list("整数値を入力してください");
+        }
+      });
+    </script>
+  </body>
+</html>
